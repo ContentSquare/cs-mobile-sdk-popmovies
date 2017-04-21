@@ -39,5 +39,8 @@
 
         <provider android:name=".data.MoviesProvider"
             android:authorities="com.dmitrymalkovich.android.popularmoviesapp" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="7d9ef419d486ef09f8a9b8df55fa59ec5ec1e6e6" />
     </application>
 </manifest>

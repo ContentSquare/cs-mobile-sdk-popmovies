@@ -17,11 +17,19 @@
     package="com.dmitrymalkovich.android.popularmoviesapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme"
-        android:name=".MainApp">
-        <activity android:name=".MovieListActivity" android:label="@string/title_movie_list"
+    <application
+        android:name=".MainApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MovieListActivity"
+            android:label="@string/title_movie_list"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,15 +37,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".details.MovieDetailActivity"
+        <activity
+            android:name=".details.MovieDetailActivity"
             android:label="@string/title_movie_detail"
             android:parentActivityName=".MovieListActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.dmitrymalkovich.android.popularmoviesapp.MovieListActivity" />
         </activity>
 
-        <provider android:name=".data.MoviesProvider"
+        <provider
+            android:name=".data.MoviesProvider"
             android:authorities="com.dmitrymalkovich.android.popularmoviesapp" />
         <meta-data
             android:name="io.fabric.ApiKey"

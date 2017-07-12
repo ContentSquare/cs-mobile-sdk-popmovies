@@ -35,6 +35,9 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+        }
     }
 
     signingConfigs {
@@ -64,6 +67,7 @@ android {
         it.buildConfigField 'String', 'THE_MOVIE_DATABASE_API_KEY', '\"4103b855864b224f509f8e04e4c3b461\"'
     }
 }
+android.defaultConfig.project.archivesBaseName = "popmovies"
 
 dependencies {
 

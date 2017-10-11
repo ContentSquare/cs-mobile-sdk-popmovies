@@ -28,7 +28,7 @@ import com.dmitrymalkovich.android.popularmoviesapp.network.Review;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.ViewHolder> {
@@ -78,9 +78,9 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        @Bind(R.id.review_content)
+        @BindView(R.id.review_content)
         TextView mContentView;
-        @Bind(R.id.review_author)
+        @BindView(R.id.review_author)
         TextView mAuthorView;
         public Review mReview;
 

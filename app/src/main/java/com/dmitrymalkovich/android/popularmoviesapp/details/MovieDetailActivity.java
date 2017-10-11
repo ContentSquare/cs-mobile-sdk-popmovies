@@ -27,7 +27,7 @@ import android.view.MenuItem;
 import com.dmitrymalkovich.android.popularmoviesapp.MovieListActivity;
 import com.dmitrymalkovich.android.popularmoviesapp.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
  */
 public class MovieDetailActivity extends AppCompatActivity {
 
-    @Bind(R.id.detail_toolbar)
+    @BindView(R.id.detail_toolbar)
     Toolbar mToolbar;
 
     @Override

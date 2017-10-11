@@ -34,7 +34,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MovieListAdapter
@@ -127,9 +127,9 @@ public class MovieListAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        @Bind(R.id.thumbnail)
+        @BindView(R.id.thumbnail)
         ImageView mThumbnailView;
-        @Bind(R.id.title)
+        @BindView(R.id.title)
         TextView mTitleView;
         public Movie mMovie;
 

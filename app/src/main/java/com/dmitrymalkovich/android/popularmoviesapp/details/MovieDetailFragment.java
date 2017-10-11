@@ -52,7 +52,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
@@ -79,30 +80,30 @@ public class MovieDetailFragment extends Fragment implements FetchTrailersTask.L
     private ReviewListAdapter mReviewListAdapter;
     private ShareActionProvider mShareActionProvider;
 
-    @Bind(R.id.trailer_list)
+    @BindView(R.id.trailer_list)
     RecyclerView mRecyclerViewForTrailers;
-    @Bind(R.id.review_list)
+    @BindView(R.id.review_list)
     RecyclerView mRecyclerViewForReviews;
 
-    @Bind(R.id.movie_title)
+    @BindView(R.id.movie_title)
     TextView mMovieTitleView;
-    @Bind(R.id.movie_overview)
+    @BindView(R.id.movie_overview)
     TextView mMovieOverviewView;
-    @Bind(R.id.movie_release_date)
+    @BindView(R.id.movie_release_date)
     TextView mMovieReleaseDateView;
-    @Bind(R.id.movie_user_rating)
+    @BindView(R.id.movie_user_rating)
     TextView mMovieRatingView;
-    @Bind(R.id.movie_poster)
+    @BindView(R.id.movie_poster)
     ImageView mMoviePosterView;
 
-    @Bind(R.id.button_watch_trailer)
+    @BindView(R.id.button_watch_trailer)
     Button mButtonWatchTrailer;
-    @Bind(R.id.button_mark_as_favorite)
+    @BindView(R.id.button_mark_as_favorite)
     Button mButtonMarkAsFavorite;
-    @Bind(R.id.button_remove_from_favorites)
+    @BindView(R.id.button_remove_from_favorites)
     Button mButtonRemoveFromFavorites;
 
-    @Bind({R.id.rating_first_star, R.id.rating_second_star, R.id.rating_third_star,
+    @BindViews({R.id.rating_first_star, R.id.rating_second_star, R.id.rating_third_star,
             R.id.rating_fourth_star, R.id.rating_fifth_star})
     List<ImageView> ratingStarViews;
 

@@ -41,7 +41,7 @@ import com.dmitrymalkovich.android.popularmoviesapp.details.MovieDetailFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -63,9 +63,9 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
     private MovieListAdapter mAdapter;
     private String mSortBy = FetchMoviesTask.MOST_POPULAR;
 
-    @Bind(R.id.movie_list)
+    @BindView(R.id.movie_list)
     RecyclerView mRecyclerView;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override

@@ -17,7 +17,7 @@
 package com.dmitrymalkovich.android.popularmoviesapp;
 
 import android.os.AsyncTask;
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 import android.util.Log;
 
 import com.dmitrymalkovich.android.popularmoviesapp.network.Movie;

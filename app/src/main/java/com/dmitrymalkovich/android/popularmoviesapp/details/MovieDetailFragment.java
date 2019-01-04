@@ -23,14 +23,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,17 +34,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dmitrymalkovich.android.popularmoviesapp.data.MovieContract;
-import com.dmitrymalkovich.android.popularmoviesapp.network.Movie;
 import com.dmitrymalkovich.android.popularmoviesapp.MovieListActivity;
 import com.dmitrymalkovich.android.popularmoviesapp.R;
+import com.dmitrymalkovich.android.popularmoviesapp.data.MovieContract;
+import com.dmitrymalkovich.android.popularmoviesapp.network.Movie;
 import com.dmitrymalkovich.android.popularmoviesapp.network.Review;
 import com.dmitrymalkovich.android.popularmoviesapp.network.Trailer;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -74,17 +74,10 @@ public class MovieDetailFragment extends Fragment implements FetchTrailersTask.L
     public static final String ARG_MOVIE = "ARG_MOVIE";
     public static final String EXTRA_TRAILERS = "EXTRA_TRAILERS";
     public static final String EXTRA_REVIEWS = "EXTRA_REVIEWS";
-
-    private Movie mMovie;
-    private TrailerListAdapter mTrailerListAdapter;
-    private ReviewListAdapter mReviewListAdapter;
-    private ShareActionProvider mShareActionProvider;
-
     @BindView(R.id.trailer_list)
     RecyclerView mRecyclerViewForTrailers;
     @BindView(R.id.review_list)
     RecyclerView mRecyclerViewForReviews;
-
     @BindView(R.id.movie_title)
     TextView mMovieTitleView;
     @BindView(R.id.movie_overview)
@@ -95,17 +88,19 @@ public class MovieDetailFragment extends Fragment implements FetchTrailersTask.L
     TextView mMovieRatingView;
     @BindView(R.id.movie_poster)
     ImageView mMoviePosterView;
-
     @BindView(R.id.button_watch_trailer)
     Button mButtonWatchTrailer;
     @BindView(R.id.button_mark_as_favorite)
     Button mButtonMarkAsFavorite;
     @BindView(R.id.button_remove_from_favorites)
     Button mButtonRemoveFromFavorites;
-
     @BindViews({R.id.rating_first_star, R.id.rating_second_star, R.id.rating_third_star,
             R.id.rating_fourth_star, R.id.rating_fifth_star})
     List<ImageView> ratingStarViews;
+    private Movie mMovie;
+    private TrailerListAdapter mTrailerListAdapter;
+    private ReviewListAdapter mReviewListAdapter;
+    private ShareActionProvider mShareActionProvider;
 
     public MovieDetailFragment() {
     }
@@ -141,7 +136,7 @@ public class MovieDetailFragment extends Fragment implements FetchTrailersTask.L
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movie_detail, container, false);
         ButterKnife.bind(this, rootView);
 
@@ -207,7 +202,8 @@ public class MovieDetailFragment extends Fragment implements FetchTrailersTask.L
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.movie_detail_fragment, menu);
         MenuItem shareTrailerMenuItem = menu.findItem(R.id.share_trailer);
-        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareTrailerMenuItem);
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(
+                shareTrailerMenuItem);
     }
 
     @Override
@@ -291,7 +287,8 @@ public class MovieDetailFragment extends Fragment implements FetchTrailersTask.L
             protected Void doInBackground(Void... params) {
                 if (isFavorite()) {
                     getContext().getContentResolver().delete(MovieContract.MovieEntry.CONTENT_URI,
-                            MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + mMovie.getId(), null);
+                            MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + mMovie.getId(),
+                            null);
 
                 }
                 return null;

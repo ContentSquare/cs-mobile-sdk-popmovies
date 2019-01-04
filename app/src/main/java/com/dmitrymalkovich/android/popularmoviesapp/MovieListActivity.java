@@ -17,30 +17,29 @@
 package com.dmitrymalkovich.android.popularmoviesapp;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.database.Cursor;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-
 import com.dmitrymalkovich.android.popularmoviesapp.data.MovieContract;
-import com.dmitrymalkovich.android.popularmoviesapp.network.Movie;
 import com.dmitrymalkovich.android.popularmoviesapp.details.MovieDetailActivity;
 import com.dmitrymalkovich.android.popularmoviesapp.details.MovieDetailFragment;
+import com.dmitrymalkovich.android.popularmoviesapp.network.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -48,12 +47,17 @@ import butterknife.ButterKnife;
  * An activity representing a grid of Movies. This activity
  * has different presentations for handset and tablet-size devices.
  */
-public class MovieListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
+public class MovieListActivity extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<Cursor>,
         FetchMoviesTask.Listener, MovieListAdapter.Callbacks {
 
     private static final String EXTRA_MOVIES = "EXTRA_MOVIES";
     private static final String EXTRA_SORT_BY = "EXTRA_SORT_BY";
     private static final int FAVORITE_MOVIES_LOADER = 0;
+    @BindView(R.id.movie_list)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -62,11 +66,6 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
     private RetainedFragment mRetainedFragment;
     private MovieListAdapter mAdapter;
     private String mSortBy = FetchMoviesTask.MOST_POPULAR;
-
-    @BindView(R.id.movie_list)
-    RecyclerView mRecyclerView;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +77,12 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
         setSupportActionBar(mToolbar);
 
         String tag = RetainedFragment.class.getName();
-        this.mRetainedFragment = (RetainedFragment) getSupportFragmentManager().findFragmentByTag(tag);
+        this.mRetainedFragment = (RetainedFragment) getSupportFragmentManager().findFragmentByTag(
+                tag);
         if (this.mRetainedFragment == null) {
             this.mRetainedFragment = new RetainedFragment();
-            getSupportFragmentManager().beginTransaction().add(this.mRetainedFragment, tag).commit();
+            getSupportFragmentManager().beginTransaction().add(this.mRetainedFragment,
+                    tag).commit();
         }
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, getResources()
@@ -260,13 +261,15 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
      * onSaveInstanceState". As the result we have commands which we cannot execute now,
      * but we have to store it and execute later.
      *
-     * @see com.dmitrymalkovich.android.popularmoviesapp.FetchMoviesTask.NotifyAboutTaskCompletionCommand
+     * @see com.dmitrymalkovich.android.popularmoviesapp.FetchMoviesTask
+     * .NotifyAboutTaskCompletionCommand
      */
     public static class RetainedFragment extends Fragment implements FetchMoviesTask.Listener {
 
         private boolean mPaused = false;
         // Currently allow to wait one command, because more is not needed. In future it can be
-        // extended to list etc. Using "MacroCommand" which contain includes other commands as waiting command.
+        // extended to list etc. Using "MacroCommand" which contain includes other commands as
+        // waiting command.
         private Command mWaitingCommand = null;
 
         public RetainedFragment() {

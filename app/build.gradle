@@ -73,11 +73,11 @@ dependencies {
     implementation project(':library')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:${jUnitVersion}"
-    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation "androidx.appcompat:appcompat:${androidXAppCompatVersion}"
+    implementation "androidx.cardview:cardview:${androidXCardViewVersion}"
+    implementation "com.google.android.material:material:${androidXMaterialDesignVersion}"
+    implementation "androidx.recyclerview:recyclerview:${androidXRecyclerViewVersion}"
     implementation "com.squareup.picasso:picasso:${picassoVersion}"
-    implementation "com.android.support:design:${supportLibVersion}"
-    implementation "com.android.support:support-v4:${supportLibVersion}"
-    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
     implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
     implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
